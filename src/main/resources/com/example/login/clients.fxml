@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.login.controllers.ClientsController"
+            prefWidth="770" prefHeight="540"
+            style="-fx-background-color: transparent;">
+
+    <!-- ===== CONTENEDOR PRINCIPAL ===== -->
+    <VBox alignment="TOP_CENTER" spacing="18" layoutX="100" layoutY="40"
+          style="-fx-background-color: rgba(255,255,255,0.05);
+                 -fx-padding: 30;
+                 -fx-border-color: #8000ff;
+                 -fx-border-radius: 12;
+                 -fx-background-radius: 12;
+                 -fx-pref-width: 550;">
+
+        <!-- Título -->
+        <Label text="🧍‍♂️ Registro de Nuevo Cliente"
+               style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+        <!-- Campo: Nombres -->
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="📝 Nombres:" styleClass="formLabel"/>
+            <TextField fx:id="txtFirstName" promptText="Ingrese los nombres del cliente" styleClass="formField"/>
+        </HBox>
+
+        <!-- Campo: Apellidos -->
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="📋 Apellidos:" styleClass="formLabel"/>
+            <TextField fx:id="txtLastName" promptText="Ingrese los apellidos" styleClass="formField"/>
+        </HBox>
+
+        <!-- Campo: Documento -->
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="🪪 Documento:" styleClass="formLabel"/>
+            <TextField fx:id="txtDocument" promptText="Ingrese número de documento" styleClass="formField"/>
+        </HBox>
+
+        <!-- Campo: Tipo de cuenta -->
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="💰 Tipo de cuenta:" styleClass="formLabel"/>
+            <ComboBox fx:id="cbAccountType" promptText="Seleccione tipo de cuenta"
+                      styleClass="formCombo">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Ahorros" />
+                        <String fx:value="Corriente" />
+                        <String fx:value="Empresarial" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
+        </HBox>
+
+        <!-- Campo: Teléfono -->
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="📞 Teléfono:" styleClass="formLabel"/>
+            <TextField fx:id="txtPhone" promptText="Ingrese número de teléfono" styleClass="formField"/>
+        </HBox>
+
+        <!-- Campo: Correo -->
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="📧 Email:" styleClass="formLabel"/>
+            <TextField fx:id="txtEmail" promptText="Ingrese correo del cliente" styleClass="formField"/>
+        </HBox>
+
+        <!-- Campo: Contraseña -->
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="📧 Contraseña:" styleClass="formLabel"/>
+            <TextField fx:id="txtPassword" promptText="Ingrese la contraseña" styleClass="formField"/>
+        </HBox>
+
+        <!-- Botón registrar -->
+        <Button fx:id="btnGuardar" text="Registrar Cliente" onAction="#OnRegisterClient"
+                styleClass="mainButton"/>
+    </VBox>
+
+    <stylesheets>
+        <URL value="@css/clients.css"/>
+    </stylesheets>
+
+</AnchorPane>

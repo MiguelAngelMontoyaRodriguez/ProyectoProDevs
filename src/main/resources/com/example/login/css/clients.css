@@ -1,0 +1,51 @@
+.formLabel {
+    -fx-text-fill: #e0c6ff;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-min-width: 150px;
+}
+
+.formField {
+    -fx-pref-width: 320px;
+    -fx-background-color: rgba(255,255,255,0.1);
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #caaeff;
+    -fx-background-radius: 6;
+    -fx-border-color: #8000ff;
+    -fx-border-radius: 6;
+    -fx-border-width: 1;
+    -fx-padding: 6;
+}
+
+.formField:focused {
+    -fx-border-color: #b366ff;
+    -fx-background-color: rgba(255,255,255,0.2);
+}
+
+.formCombo {
+    -fx-pref-width: 320px;
+    -fx-background-color: rgba(255,255,255,0.1);
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #caaeff;
+    -fx-border-color: #8000ff;
+    -fx-border-radius: 6;
+}
+
+.mainButton {
+    -fx-background-color: linear-gradient(to right, #5a189a, #9d4edd);
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-pref-width: 220px;
+    -fx-pref-height: 38px;
+}
+
+.mainButton:hover {
+    -fx-background-color: linear-gradient(to right, #7b2cbf, #c77dff);
+    -fx-cursor: hand;
+}
+
+.mainButton:pressed {
+    -fx-background-color: #4b0082;
+}

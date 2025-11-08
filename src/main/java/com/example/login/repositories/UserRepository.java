@@ -1,5 +1,8 @@
 package com.example.login.repositories;
 
+import com.example.login.models.Admin;
+import com.example.login.models.Cashier;
+import com.example.login.models.Client;
 import com.example.login.models.User;
 
 import java.util.ArrayList;
@@ -11,7 +14,7 @@ public class UserRepository {
 
         private UserRepository() {
             user = new ArrayList<>();
-            cargarDatosEjemplo();
+
         }
 
     /**
@@ -25,28 +28,58 @@ public class UserRepository {
     }
 
     /**
+     * Obtiene la cantidad de Usuarios
+     */
+    public int getAmountUsers() {
+        return user.size();
+
+    }
+
+    /**
      * Carga algunos productos de ejemplo
      */
-    private void cargarDatosEjemplo() {
-        user.add(new User("pablito.com", "12345", "2"));
-        user.add(new User("azul.com", "67890", "3"));
+    public void cargarDatosEjemplo() {
+        user.add(new Admin("RickPichon@gmail.com", "panConQueso","Rick", "1242342342", "dsf34t3g435"));
+        user.add(new Cashier("caro@gmail.com", "0606", "0128", "Diurno"));
+        user.add(new Client("pablito@gmail.com", "12345","luis", "alexander", "123123", "321","corriente"));
+    }
+
+    /*
+    *Valida que el usuario este en el arrayList
+     */
+
+    public static boolean searchUser(String Email, String password){
+        boolean flag = false;
+        for(User users : user){
+            if(Email.equals(users.getEmail()) && password.equals(users.getPassword())){
+                flag= true;
+                break;
+            }
+        }
+        return flag;
+    }
+
+
+    /*
+    busca el usuario logueado
+     */
+    public User login(String Email, String password) {
+        for (User users : user) {
+            if(Email.equals(users.getEmail()) && password.equals(users.getPassword())){
+                return users;
+            }
+        }
+        return null;
     }
 
     /**
-     * Obtiene todos los Usuarios
+     * Busca un Cliente por Correo
      */
-    public ArrayList<User> getUser() {
-
-        return user;
-    }
-
-    /**
-     * Agrega un nuevo Usuario
-     */
-    public void addUser(User user) {
-
-        this.user.add(user);
-
+    public User searchForEmail(String Email) {
+        return user.stream()
+                .filter(p -> p.getEmail().equals(Email))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
@@ -59,34 +92,24 @@ public class UserRepository {
     }
 
     /**
-     * Busca un Usuario por Correo
+     * Agrega un nuevo Usuario
      */
-    public User buscarPorCorreo(String Email) {
-        return user.stream()
-                .filter(p -> p.getEmail().equals(Email))
-                .findFirst()
-                .orElse(null);
-    }
+    public void addUser(User user) {
 
-
-
-    /**
-     * Obtiene la cantidad de Usuarios
-     */
-    public int getAmountUsers() {
-        return user.size();
+        this.user.add(user);
 
     }
 
-    public static int searchUser(String Email, String password){
-        int i=0;
-        for(User users : user){
-            if(Email.equals(users.getEmail())){
-                if(password.equals(users.getPassword())){
-                    i = 1;
-                }
+    /*
+    Obtiene usuario segun el rol
+     */
+    public ArrayList<User> getByRole(int role) {
+        ArrayList<User> result = new ArrayList<>();
+        for (User users : user) {
+            if (role == users.getRole()){
+                result.add(users);
             }
         }
-        return i;
+        return result;
     }
 }
