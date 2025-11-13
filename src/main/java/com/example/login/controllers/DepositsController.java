@@ -59,8 +59,8 @@ public class DepositsController {
         userRepository = UserRepository.getInstancia();
         // Configurar columnas
         colDate.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getFormattedDate()));
-        colId.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getClientId()));
         colType.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getType()));
+        colId.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getClientId()));
         colAmount.setCellValueFactory(c -> new SimpleDoubleProperty(c.getValue().getAmount()));
 
         cargarClientes();
