@@ -2,15 +2,25 @@ package com.example.login.models;
 
 public class Cashier extends User{
 
+    private String name;
     private String id;
     private String Shift;
 
     public Cashier(){}
 
-    public Cashier(String email, String password, String id, String Shift) {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Cashier(String email, String password, String name, String id, String Shift) {
         super (email, password, 2);
         this.id = id;
         this.Shift= Shift;
+        this.name=name;
     }
 
     public String getId() {

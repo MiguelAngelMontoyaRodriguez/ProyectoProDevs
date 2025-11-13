@@ -1,14 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.login.controllers.EmployeeManagement"
-            prefHeight="400.0" prefWidth="600.0">
+            fx:controller="com.example.login.controllers.EmployeeManagementController"
+            prefWidth="900.0" prefHeight="600.0"
+            stylesheets="@css/employees.css">
 
+    <!-- Fondo -->
+    <AnchorPane styleClass="background-pane" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0"
+                AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
+
+        <!-- Contenedor principal -->
+        <HBox spacing="20">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <!-- Panel Izquierdo: Formulario -->
+            <VBox spacing="15" alignment="TOP_LEFT" prefWidth="300">
+                <Label text="Gestión de Empleados" styleClass="title-label"/>
+
+                <Label text="Nombre:"/>
+                <TextField fx:id="txtFirstName" promptText="Ingrese nombre"/>
+
+                <Label text="Email:"/>
+                <TextField fx:id="txtEmail" promptText="Ingrese correo electrónico"/>
+
+                <Label text="Email:"/>
+                <TextField fx:id="txtId" promptText="Ingrese la cedula"/>
+
+                <Label text="Email:"/>
+                <TextField fx:id="txtPhone" promptText="Ingrese el numero de telefono"/>
+
+                <Label text="Email:"/>
+                <TextField fx:id="txtShift" promptText="Ingrese el turno"/>
+
+                <Label text="Contraseña:"/>
+                <PasswordField fx:id="txtPassword" promptText="Ingrese contraseña"/>
+
+                <Label text="Rol:"/>
+                <ComboBox fx:id="cbRole" promptText="Seleccione rol"/>
+
+                <Label fx:id="lblStatus" textFill="white" wrapText="true"/>
+
+                <HBox spacing="10">
+                    <Button text="Agregar" fx:id="btnAdd" onAction="#OnAddEmployee" styleClass="primary-btn"/>
+                    <Button text="Modificar" fx:id="btnEdit" onAction="#OnEditEmployee" styleClass="secondary-btn"/>
+                </HBox>
+                <Button text="Eliminar" fx:id="btnDelete" onAction="#OnDeleteEmployee" styleClass="danger-btn"/>
+            </VBox>
+
+            <!-- Panel Derecho: Tabla -->
+            <VBox spacing="10" alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+                <Label text="Lista de Empleados" styleClass="subtitle-label"/>
+                <TableView fx:id="tblEmployees" prefHeight="550">
+                    <columns>
+                        <TableColumn fx:id="colName" text="Nombre" prefWidth="150"/>
+                        <TableColumn fx:id="colEmail" text="Email" prefWidth="200"/>
+                        <TableColumn fx:id="colRole" text="Rol" prefWidth="120"/>
+                    </columns>
+                </TableView>
+            </VBox>
+
+        </HBox>
+    </AnchorPane>
 </AnchorPane>

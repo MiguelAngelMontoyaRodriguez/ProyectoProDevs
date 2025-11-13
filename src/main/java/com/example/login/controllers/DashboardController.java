@@ -222,7 +222,24 @@ public class DashboardController {
     private void OnGoSecurity() {}
 
     @FXML
-    private void OnGoEmployees() {}
+    private void OnGoEmployees() {
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("/com/example/login/employeeManagement.fxml"));
+            Parent employeeManagement = loader.load();
+
+            // Obtener el controlador de Clientes
+            EmployeeManagementController controller = loader.getController();
+
+            // Reemplazar el contenido del contenedor principal
+            MainContainer.getChildren().clear();
+            MainContainer.getChildren().add(employeeManagement);
+            VBox.setVgrow(employeeManagement, Priority.ALWAYS);
+
+        } catch (IOException e) {
+            mostrarAlerta("Error", "No se pudo cargar la lista", Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private void OnGoMonitor() {}
