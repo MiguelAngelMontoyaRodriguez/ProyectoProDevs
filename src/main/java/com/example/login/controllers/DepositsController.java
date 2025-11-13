@@ -33,7 +33,7 @@ public class DepositsController {
     @FXML
     private TableColumn<Movements, Number> colAmount;
     @FXML
-    private TableColumn<Movements, Number> colId;
+    private TableColumn<Movements, String> colId;
 
     private MovementsRepository movementsRepository;
     private UserRepository userRepository;
@@ -59,7 +59,7 @@ public class DepositsController {
         userRepository = UserRepository.getInstancia();
         // Configurar columnas
         colDate.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getFormattedDate()));
-        colId.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getClientId()).length());
+        colId.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getClientId()));
         colType.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getType()));
         colAmount.setCellValueFactory(c -> new SimpleDoubleProperty(c.getValue().getAmount()));
 
