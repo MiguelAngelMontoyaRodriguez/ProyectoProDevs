@@ -1,6 +1,7 @@
 package com.example.login.controllers;
 
 import com.example.login.App;
+import com.example.login.models.Client;
 import com.example.login.models.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,6 +38,9 @@ public class DashboardController {
     @FXML
     private Button btnAdvancedReports;
     @FXML
+    private Button btnBalance;
+
+    @FXML
     private StackPane MainContainer;
 
     private User loggedUser;
@@ -51,12 +55,23 @@ public class DashboardController {
 
         switch (role) {
             case 1:
+                btnBalance.setVisible(false);
+                btnBalance.setManaged(false);
 
                 break;
 
             case 2:
                 btnEmployeeManagement.setVisible(false);
                 btnSecurityAuthentication.setVisible(false);
+                btnTransactionMonitoring.setVisible(false);
+                btnAdvancedReports.setVisible(false);
+                btnBalance.setVisible(false);
+
+                btnEmployeeManagement.setManaged(false);
+                btnSecurityAuthentication.setManaged(false);
+                btnTransactionMonitoring.setManaged(false);
+                btnAdvancedReports.setManaged(false);
+                btnBalance.setManaged(false);
                 break;
 
             case 3:
@@ -65,9 +80,29 @@ public class DashboardController {
                 btnTransactionMonitoring.setVisible(false);
                 btnAdvancedReports.setVisible(false);
                 btnRegisterClient.setVisible(false);
+                btnSecurityAuthentication.setVisible(false);
+                btnCheckBalance.setVisible(false);
+
+                btnEmployeeManagement.setManaged(false);
+                btnGenerateReport.setManaged(false);
+                btnTransactionMonitoring.setManaged(false);
+                btnAdvancedReports.setManaged(false);
+                btnRegisterClient.setManaged(false);
+                btnSecurityAuthentication.setManaged(false);
+                btnCheckBalance.setManaged(false);
+
+
 
                 break;
         }
+    }
+
+    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
     }
 
     @FXML
@@ -89,14 +124,6 @@ public class DashboardController {
             mostrarAlerta("Error", "No se pudo cargar el formulario de Clientes", Alert.AlertType.ERROR);
             e.printStackTrace();
         }
-    }
-
-    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
-        Alert alerta = new Alert(tipo);
-        alerta.setTitle(titulo);
-        alerta.setHeaderText(null);
-        alerta.setContentText(mensaje);
-        alerta.showAndWait();
     }
 
     @FXML
@@ -123,13 +150,70 @@ public class DashboardController {
         }
     }
     @FXML
-    private void OnGoDeposits() {}
+    private void OnGoDeposits() {
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("/com/example/login/deposits.fxml"));
+            Parent deposits = loader.load();
+
+            // Obtener el controlador de Clientes
+            DepositsController controller = loader.getController();
+            controller.setUser(App.loggedUser);
+
+
+
+            // Reemplazar el contenido del contenedor principal
+            MainContainer.getChildren().clear();
+            MainContainer.getChildren().add(deposits);
+            VBox.setVgrow(deposits, Priority.ALWAYS);
+
+        } catch (IOException e) {
+            mostrarAlerta("Error", "No se pudo cargar la lista", Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
+    }
 
     @FXML
-    private void OnGoSaldo() {}
+    private void OnGoCheckBalance() {
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("/com/example/login/checkBalance.fxml"));
+            Parent checkBalance = loader.load();
+
+            // Obtener el controlador de Clientes
+            CheckBalanceController controller = loader.getController();
+            controller.setUser(App.loggedUser);
+
+
+            // Reemplazar el contenido del contenedor principal
+            MainContainer.getChildren().clear();
+            MainContainer.getChildren().add(checkBalance);
+            VBox.setVgrow(checkBalance, Priority.ALWAYS);
+
+        } catch (IOException e) {
+            mostrarAlerta("Error", "No se pudo cargar la lista", Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
+    }
 
     @FXML
-    private void OnGoTransfer() {}
+    private void OnGoTransfer() {
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("/com/example/login/transfer.fxml"));
+            Parent transfer = loader.load();
+
+            // Obtener el controlador de Clientes
+            TransferController controller = loader.getController();
+
+
+            // Reemplazar el contenido del contenedor principal
+            MainContainer.getChildren().clear();
+            MainContainer.getChildren().add(transfer);
+            VBox.setVgrow(transfer, Priority.ALWAYS);
+
+        } catch (IOException e) {
+            mostrarAlerta("Error", "No se pudo cargar el apartado de transferencia", Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private void OnGoReport() {}
@@ -145,4 +229,25 @@ public class DashboardController {
 
     @FXML
     private void OnGoAdvancedReports() {}
+
+    @FXML
+    private void OnGoBalance() {
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("/com/example/login/balance.fxml"));
+            Parent balance = loader.load();
+
+            // Obtener el controlador de Clientes
+            BalanceController controller = loader.getController();
+            controller.setClient((Client) loggedUser);
+
+            // Reemplazar el contenido del contenedor principal
+            MainContainer.getChildren().clear();
+            MainContainer.getChildren().add(balance);
+            VBox.setVgrow(balance, Priority.ALWAYS);
+
+        } catch (IOException e) {
+            mostrarAlerta("Error", "No se pudo cargar su saldo", Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
+    }
 }

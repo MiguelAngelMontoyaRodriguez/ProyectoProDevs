@@ -77,6 +77,12 @@
             <TextField fx:id="txtPassword" promptText="Ingrese la contraseña" styleClass="formField"/>
         </HBox>
 
+        <!-- Campo: Saldo -->
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="📧 Saldo:" styleClass="formLabel"/>
+            <TextField fx:id="txtBalance" promptText="Ingrese el saldo" styleClass="formField"/>
+        </HBox>
+
         <!-- Botón registrar -->
         <Button fx:id="btnGuardar" text="Registrar Cliente" onAction="#OnRegisterClient"
                 styleClass="mainButton"/>

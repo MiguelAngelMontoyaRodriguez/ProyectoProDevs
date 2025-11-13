@@ -39,5 +39,5 @@ public abstract class User {
         this.role = role;
     }
 
-//    public abstract void implementRol();
+
 }

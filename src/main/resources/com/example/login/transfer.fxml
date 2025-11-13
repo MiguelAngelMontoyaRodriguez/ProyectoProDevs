@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.login.controllers.TransferController"
+            prefWidth="800" prefHeight="600"
+            stylesheets="@css/transfer.css"
+            style="-fx-background-color: linear-gradient(to bottom right, #1a1a1a, #3b0066);">
+
+    <!-- Contenedor principal -->
+    <VBox alignment="TOP_CENTER" spacing="20" AnchorPane.topAnchor="40" AnchorPane.leftAnchor="100" AnchorPane.rightAnchor="100">
+
+        <!-- Título -->
+        <Label text="Transferencias - Banco UQ"
+               styleClass="title-label"/>
+
+        <!-- Formulario de transferencia -->
+        <VBox spacing="15" styleClass="form-container">
+
+            <!-- Cuenta origen -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Cuenta origen 💳" styleClass="form-label"/>
+                <ComboBox fx:id="cbOrigin" promptText="Seleccione cuenta origen" prefWidth="300"/>
+            </HBox>
+
+            <!-- Cuenta destino -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Cuenta destino 🏦" styleClass="form-label"/>
+                <ComboBox fx:id="cbDestination" promptText="Seleccione cuenta destino" prefWidth="300"/>
+            </HBox>
+
+            <!-- Monto -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Monto 💰" styleClass="form-label"/>
+                <TextField fx:id="txtAmount" promptText="Ingrese el monto a transferir" prefWidth="200"/>
+            </HBox>
+
+            <!-- Botón -->
+            <Button fx:id="btnTransfer"
+                    text="Confirmar transferencia"
+                    onAction="#OnConfirmTransfer"
+                    styleClass="primary-button"
+                    prefWidth="300"/>
+        </VBox>
+
+        <!-- Resultado -->
+        <Label fx:id="lblStatus"
+               text=""
+               styleClass="status-label"/>
+    </VBox>
+</AnchorPane>

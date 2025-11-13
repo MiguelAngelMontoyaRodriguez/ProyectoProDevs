@@ -1,0 +1,59 @@
+
+.root-pane {
+    -fx-background-color: linear-gradient(to bottom right, #0d0d0d, #2b0057);
+}
+
+
+.title-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #d3bfff;
+    -fx-effect: dropshadow(gaussian, rgba(80, 0, 150, 0.4), 10, 0.4, 0, 0);
+}
+
+
+.form-label {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+}
+
+
+.combo-box {
+    -fx-background-color: #3a0ca3;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-border-color: #9d4edd;
+    -fx-border-radius: 8;
+}
+.combo-box:hover {
+    -fx-cursor: hand;
+    -fx-background-color: #5f0f40;
+}
+
+.balance-field {
+    -fx-background-color: #240046;
+    -fx-text-fill: #00ffae;
+    -fx-font-size: 18px;
+    -fx-alignment: CENTER;
+    -fx-background-radius: 8;
+    -fx-border-color: #9d4edd;
+    -fx-border-radius: 8;
+}
+
+
+.primary-button {
+    -fx-background-radius: 8;
+    -fx-background-color: linear-gradient(to right, #7b2cbf, #9d4edd);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-padding: 8 30;
+    -fx-cursor: hand;
+    -fx-border-color: #c77dff;
+    -fx-border-radius: 8;
+}
+.primary-button:hover {
+    -fx-opacity: 0.9;
+    -fx-background-color: linear-gradient(to right, #9d4edd, #c77dff);
+}

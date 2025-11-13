@@ -41,7 +41,7 @@ public class UserRepository {
     public void cargarDatosEjemplo() {
         user.add(new Admin("RickPichon@gmail.com", "panConQueso","Rick", "1242342342", "dsf34t3g435"));
         user.add(new Cashier("caro@gmail.com", "0606", "0128", "Diurno"));
-        user.add(new Client("pablito@gmail.com", "12345","luis", "alexander", "123123", "321","corriente"));
+        user.add(new Client("pablito@gmail.com", "12345","luis", "alexander", "123123", "321","corriente", 5000));
     }
 
     /*
@@ -112,4 +112,16 @@ public class UserRepository {
         }
         return result;
     }
+
+    public void updateClient(Client updatedClient) {
+        for (int i = 0; i < user.size(); i++) {
+            User users = user.get(i);
+            if (users.getRole() == 3 && ((Client) users).getId().equals(updatedClient.getId())) {
+                user.set(i, updatedClient);
+                break;
+            }
+        }
+    }
+
+
 }

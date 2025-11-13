@@ -31,13 +31,14 @@
 
         <Button fx:id="btnRegisterClient" text="Registro de Clientes" onAction="#OnGoClients" styleClass="menuButton"/>
         <Button fx:id="btnDepositsWithdrawals" text="Depósitos y Retiros" onAction="#OnGoDeposits" styleClass="menuButton"/>
-        <Button fx:id="btnCheckBalance" text="Consultar Saldo" onAction="#OnGoSaldo" styleClass="menuButton"/>
+        <Button fx:id="btnCheckBalance" text="Consultar Saldo" onAction="#OnGoCheckBalance" styleClass="menuButton"/>
         <Button fx:id="btnTransfers" text="Transferencias" onAction="#OnGoTransfer" styleClass="menuButton"/>
         <Button fx:id="btnGenerateReport" text="Generar Reporte" onAction="#OnGoReport" styleClass="menuButton"/>
         <Button fx:id="btnEmployeeManagement" text="Gestión de Empleados" onAction="#OnGoEmployees" styleClass="menuButton"/>
         <Button fx:id="btnSecurityAuthentication" text="Seguridad y Autenticación" onAction="#OnGoSecurity" styleClass="menuButton"/>
         <Button fx:id="btnTransactionMonitoring" text="Monitoreo de Transacciones" onAction="#OnGoMonitor" styleClass="menuButton"/>
         <Button fx:id="btnAdvancedReports" text="Reportes Avanzados" onAction="#OnGoAdvancedReports" styleClass="menuButton"/>
+        <Button fx:id="btnBalance" text="Mi saldo" onAction="#OnGoBalance" styleClass="menuButton"/>
     </VBox>
 
     <!-- ===== Contenedor principal ===== -->

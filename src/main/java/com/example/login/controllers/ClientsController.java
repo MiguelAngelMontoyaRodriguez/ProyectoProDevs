@@ -27,6 +27,8 @@ public class ClientsController {
 
     @FXML
     private TextField txtEmail;
+    @FXML
+    private TextField txtBalance;
 
     @FXML
     private ComboBox<String> cbAccountType;
@@ -68,6 +70,7 @@ public class ClientsController {
             String password = txtPassword.getText().trim();
             String phone = txtPhone.getText().trim();
             String accountType = cbAccountType.getValue();
+            double balance = Double.parseDouble(txtBalance.getText().trim());
 
 
 
@@ -78,7 +81,7 @@ public class ClientsController {
             }
 
             // Crear y guardar el Cliente
-            User newUser = new Client(email, password, firstNames, lastNames, document, phone, accountType);
+            User newUser = new Client(email, password, firstNames, lastNames, document, phone, accountType, balance);
             userRepository.addUser(newUser);
 
             mostrarAlerta("Éxito", "Cliente creado correctamente", Alert.AlertType.INFORMATION);
@@ -115,6 +118,10 @@ public class ClientsController {
         }
         if (txtPassword.getText().trim().isEmpty()) {
             mostrarAlerta("Error de validación", "La contraseña es obligatoria", Alert.AlertType.WARNING);
+            return false;
+        }
+        if (txtPassword.getText().trim().isEmpty()) {
+            mostrarAlerta("Error de validación", "El saldo es obligatorio", Alert.AlertType.WARNING);
             return false;
         }
         return true;

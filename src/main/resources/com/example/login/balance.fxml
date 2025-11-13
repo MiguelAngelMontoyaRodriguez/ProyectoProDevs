@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.login.controllers.BalanceController"
+            prefWidth="770" prefHeight="540"
+            stylesheets="@css/checkBalance.css"
+            styleClass="root-pane">
+
+    <VBox alignment="CENTER" spacing="30" prefWidth="770" prefHeight="540">
+
+        <Label text="💰 Consulta de Saldo" styleClass="title-label"/>
+
+        <VBox alignment="CENTER" spacing="10">
+            <Label text="Saldo actual:" styleClass="form-label"/>
+            <TextField fx:id="txtBalance" editable="false" styleClass="balance-field"/>
+        </VBox>
+
+        <Button fx:id="btnRefresh" text="Actualizar saldo"
+                onAction="#OnRefreshBalance" styleClass="primary-button"/>
+    </VBox>
+</AnchorPane>

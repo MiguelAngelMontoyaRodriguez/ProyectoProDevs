@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.login.controllers.DepositsController"
+            prefWidth="800" prefHeight="600"
+            stylesheets="@css/transfer.css"
+            style="-fx-background-color: linear-gradient(to bottom right, #1a1a1a, #3b0066);">
+
+    <VBox alignment="TOP_CENTER" spacing="20" AnchorPane.topAnchor="40" AnchorPane.leftAnchor="100" AnchorPane.rightAnchor="100">
+
+        <!-- Título -->
+        <Label text="Depósitos y Retiros - Banco UQ"
+               styleClass="title-label"/>
+
+        <!-- Contenedor del formulario -->
+        <VBox spacing="15" styleClass="form-container">
+
+            <!-- Seleccionar cliente -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Cliente 👤" styleClass="form-label"/>
+                <ComboBox fx:id="cbClients" promptText="Seleccione un cliente" prefWidth="300"/>
+            </HBox>
+
+            <!-- Tipo de operación -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Operación 🔁" styleClass="form-label"/>
+                <ComboBox fx:id="cbOperation" promptText="Seleccione tipo de operación" prefWidth="200"/>
+            </HBox>
+
+            <!-- Monto -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Monto 💰" styleClass="form-label"/>
+                <TextField fx:id="txtAmount" promptText="Ingrese monto" prefWidth="200"/>
+            </HBox>
+
+            <!-- Botón principal -->
+            <Button fx:id="btnConfirm"
+                    text="Confirmar operación"
+                    onAction="#OnConfirmOperation"
+                    styleClass="primary-button"
+                    prefWidth="300"/>
+
+        </VBox>
+
+        <Label text="Movimientos recientes:" styleClass="form-label"/>
+
+        <TableView fx:id="tblMovements" prefHeight="200">
+            <columns>
+                <TableColumn fx:id="colDate" text="Fecha" prefWidth="150"/>
+                <TableColumn fx:id="colId" text="ID" prefWidth="100"/>
+                <TableColumn fx:id="colType" text="Tipo" prefWidth="100"/>
+                <TableColumn fx:id="colAmount" text="Monto" prefWidth="100"/>
+
+            </columns>
+        </TableView>
+
+        <!-- Resultado -->
+        <Label fx:id="lblStatus"
+               text=""
+               styleClass="status-label"/>
+    </VBox>
+</AnchorPane>

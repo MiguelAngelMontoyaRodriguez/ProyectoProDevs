@@ -8,17 +8,27 @@ public class Client extends User{
     private String id;
     private String phone;
     private String accountType;
+    private double balance;
 
     public Client(){}
 
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
     public Client(String email, String password, String firstName,
-                  String lastName, String id, String phone, String accountType) {
+                  String lastName, String id, String phone, String accountType, double balance) {
         super(email, password, 3);
         this.firstName = firstName;
         this.lastName = lastName;
         this.id = id;
         this.phone = phone;
         this.accountType= accountType;
+        this.balance=balance;
 
     }
 
@@ -64,12 +74,10 @@ public class Client extends User{
 
     @Override
     public String toString() {
-        return "Cliente{" +
-                "Nombres='" + firstName + '\'' +
-                ", apellidos='" + lastName + '\'' +
-                ", documento='" + id + '\'' +
-                ", telefono='" + phone + '\'' +
-                ", Tipo de cuenta='" + accountType + '\'' +
-                '}';
+        return   firstName + " " +
+                  lastName + " " +
+                ", documento= " + id + " " +
+                ", telefono= " + phone + " " +
+                ", Tipo de cuenta= " + accountType + " ";
     }
 }

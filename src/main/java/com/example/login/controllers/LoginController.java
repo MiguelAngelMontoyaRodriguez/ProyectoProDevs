@@ -1,5 +1,6 @@
 package com.example.login.controllers;
 
+import com.example.login.App;
 import com.example.login.models.User;
 import com.example.login.repositories.UserRepository;
 import javafx.collections.FXCollections;
@@ -33,6 +34,7 @@ public class LoginController {
 
     @FXML
     private AnchorPane rootPane;
+
 
 
     @FXML
@@ -115,6 +117,10 @@ public class LoginController {
             String Password = txtContraseña.getText().trim();
 
             User user = userRepository.login(Email, Password);
+
+            if (user != null) {
+                App.loggedUser = user;
+            }
 
 
             // Verificar si el correo esta registrado

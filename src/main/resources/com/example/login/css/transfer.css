@@ -1,0 +1,44 @@
+.anchor-pane {
+    -fx-background-color: linear-gradient(to bottom right, #1a1a1a, #3b0066);
+}
+
+.title-label {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+
+.form-label {
+    -fx-text-fill: #cba8ff;
+    -fx-font-size: 16px;
+}
+
+
+.form-container {
+    -fx-background-color: rgba(255,255,255,0.05);
+    -fx-padding: 20;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-border-color: #7e3ff2;
+    -fx-border-width: 1.5;
+}
+
+
+.primary-button {
+    -fx-background-color: linear-gradient(to right, #7e3ff2, #a566ff);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+}
+
+.primary-button:hover {
+    -fx-background-color: linear-gradient(to right, #a566ff, #7e3ff2);
+}
+
+
+.status-label {
+    -fx-text-fill: #a0ffa0;
+    -fx-font-size: 14px;
+    -fx-font-style: italic;
+}
