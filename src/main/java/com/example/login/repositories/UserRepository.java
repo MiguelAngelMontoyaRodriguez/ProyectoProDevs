@@ -10,7 +10,8 @@ import java.util.ArrayList;
 public class UserRepository {
 
         private static UserRepository instancia;
-        private static ArrayList<User> user;
+        private ArrayList<User> user;
+    private boolean datosCargados = false;
 
         private UserRepository() {
             user = new ArrayList<>();
@@ -39,25 +40,18 @@ public class UserRepository {
      * Carga algunos productos de ejemplo
      */
     public void cargarDatosEjemplo() {
+        if (datosCargados) return;
+
         user.add(new Admin("RickPichon@gmail.com", "panConQueso","Rick", "1242342342", "dsf34t3g435"));
         user.add(new Cashier("caro@gmail.com", "0606", "carol","0128", "Diurno"));
         user.add(new Client("pablito@gmail.com", "12345","luis", "alexander", "123123", "321","corriente", 5000));
+
+        datosCargados = true;
     }
 
     /*
     *Valida que el usuario este en el arrayList
      */
-
-    public static boolean searchUser(String Email, String password){
-        boolean flag = false;
-        for(User users : user){
-            if(Email.equals(users.getEmail()) && password.equals(users.getPassword())){
-                flag= true;
-                break;
-            }
-        }
-        return flag;
-    }
 
 
     /*
@@ -85,9 +79,9 @@ public class UserRepository {
     /**
      * Elimina un Usuario
      */
-    public boolean eliminateUser(User user) {
+    public void eliminateUser(User user) {
 
-        return this.user.remove(user);
+        this.user.remove(user);
 
     }
 
@@ -139,6 +133,17 @@ public class UserRepository {
                 break;
             }
         }
+    }
+
+    /**
+     * Bloquear o desbloquear usuario
+     */
+    public void blockUser(User user) {
+        user.setBlocked(true);
+    }
+
+    public void unblockUser(User user) {
+        user.setBlocked(false);
     }
 
 

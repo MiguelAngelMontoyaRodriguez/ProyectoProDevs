@@ -219,7 +219,24 @@ public class DashboardController {
     private void OnGoReport() {}
 
     @FXML
-    private void OnGoSecurity() {}
+    private void OnGoSecurity() {
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("/com/example/login/securityAuthentication.fxml"));
+            Parent securityAuthentication = loader.load();
+
+            // Obtener el controlador de Clientes
+            SecurityAuthenticationController controller = loader.getController();
+
+            // Reemplazar el contenido del contenedor principal
+            MainContainer.getChildren().clear();
+            MainContainer.getChildren().add(securityAuthentication);
+            VBox.setVgrow(securityAuthentication, Priority.ALWAYS);
+
+        } catch (IOException e) {
+            mostrarAlerta("Error", "No se pudo cargar la lista", Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private void OnGoEmployees() {

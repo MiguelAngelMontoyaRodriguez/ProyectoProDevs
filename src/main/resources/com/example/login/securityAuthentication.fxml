@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.login.controllers.SecurityAuthenticationController"
+            prefWidth="900.0" prefHeight="600.0"
+            stylesheets="@css/security.css">
+
+    <!-- Fondo principal -->
+    <AnchorPane styleClass="background-pane" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0"
+                AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
+
+        <!-- Contenedor vertical -->
+        <VBox spacing="15" alignment="TOP_CENTER">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="🔒 Seguridad y Autenticación" styleClass="title-label"/>
+
+            <!-- Tabla de usuarios -->
+            <TableView fx:id="tblUsers" prefHeight="400" prefWidth="850">
+                <columns>
+                    <TableColumn fx:id="colEmail" text="Correo" prefWidth="220"/>
+                    <TableColumn fx:id="colRole" text="Rol" prefWidth="150"/>
+                    <TableColumn fx:id="colStatus" text="Estado" prefWidth="150"/>
+                </columns>
+            </TableView>
+
+            <!-- Botones de acciones -->
+            <HBox spacing="10" alignment="CENTER">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <Button text="Bloquear Usuario" onAction="#OnBlockUser" styleClass="danger-btn"/>
+                <Button text="Desbloquear Usuario" onAction="#OnUnblockUser" styleClass="secondary-btn"/>
+                <Button text="Restablecer Contraseña" onAction="#OnResetPassword" styleClass="primary-btn"/>
+            </HBox>
+
+            <Label fx:id="lblStatus" textFill="white" wrapText="true"/>
+
+        </VBox>
+    </AnchorPane>
+</AnchorPane>

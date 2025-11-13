@@ -31,13 +31,13 @@
                 <Label text="Email:"/>
                 <TextField fx:id="txtEmail" promptText="Ingrese correo electrónico"/>
 
-                <Label text="Email:"/>
-                <TextField fx:id="txtId" promptText="Ingrese la cedula"/>
+                <Label text="Identificación:"/>
+                <TextField fx:id="txtId" promptText="Ingrese su identificación"/>
 
-                <Label text="Email:"/>
+                <Label text="Telefono:"/>
                 <TextField fx:id="txtPhone" promptText="Ingrese el numero de telefono"/>
 
-                <Label text="Email:"/>
+                <Label text="Turno:"/>
                 <TextField fx:id="txtShift" promptText="Ingrese el turno"/>
 
                 <Label text="Contraseña:"/>
@@ -49,10 +49,10 @@
                 <Label fx:id="lblStatus" textFill="white" wrapText="true"/>
 
                 <HBox spacing="10">
-                    <Button text="Agregar" fx:id="btnAdd" onAction="#OnAddEmployee" styleClass="primary-btn"/>
-                    <Button text="Modificar" fx:id="btnEdit" onAction="#OnEditEmployee" styleClass="secondary-btn"/>
+                    <Button text="Agregar" onAction="#OnAddEmployee" styleClass="primary-btn"/>
+                    <Button text="Modificar" onAction="#OnEditEmployee" styleClass="secondary-btn"/>
                 </HBox>
-                <Button text="Eliminar" fx:id="btnDelete" onAction="#OnDeleteEmployee" styleClass="danger-btn"/>
+                <Button text="Eliminar" onAction="#OnDeleteEmployee" styleClass="danger-btn"/>
             </VBox>
 
             <!-- Panel Derecho: Tabla -->

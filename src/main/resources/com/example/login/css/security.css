@@ -1,0 +1,36 @@
+.background-pane {
+    -fx-background-color: linear-gradient(to right, #1b0033, #4b0082);
+}
+
+.title-label {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #d8b4ff;
+}
+
+.primary-btn {
+    -fx-background-color: #6a0dad;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+}
+
+.secondary-btn {
+    -fx-background-color: #4b0082;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+}
+
+.danger-btn {
+    -fx-background-color: #b00020;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+}
+
+.table-view {
+    -fx-background-color: #2a0035;
+    -fx-border-color: #6a0dad;
+    -fx-border-radius: 8;
+}
