@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -39,6 +40,9 @@ public class DashboardController {
     private Button btnAdvancedReports;
     @FXML
     private Button btnBalance;
+    @FXML
+    private Label lblActiveUser;
+
 
     @FXML
     private StackPane MainContainer;
@@ -48,6 +52,11 @@ public class DashboardController {
     public void setUser(User user) {
         this.loggedUser = user;
         interfaceForRole();
+        setUserDashboard();
+    }
+
+    private void setUserDashboard (){
+        lblActiveUser.setText(loggedUser.getEmail());
     }
 
     private void interfaceForRole() {

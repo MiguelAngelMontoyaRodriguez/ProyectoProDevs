@@ -39,12 +39,10 @@
         <Button fx:id="btnBalance" onAction="#OnGoBalance" styleClass="menuButton" text="Mi saldo" />
     </VBox>
 
-    <!-- ===== Contenedor principal ===== -->
     <StackPane fx:id="MainContainer" layoutX="230" layoutY="60" style="-fx-background-color: rgba(255,255,255,0.05);                       -fx-border-color: #8000ff;                       -fx-border-width: 2;                       -fx-background-radius: 10;                       -fx-border-radius: 10;" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="230" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="60">
         <Label style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;" text="Bienvenido al Sistema Bancario Banco UQ" />
     </StackPane>
 
-    <!-- ===== Estilos internos CSS ===== -->
     <stylesheets>
         <URL value="@css/dashboard.css" />
     </stylesheets>
