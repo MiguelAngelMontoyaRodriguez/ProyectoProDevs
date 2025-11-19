@@ -1,0 +1,75 @@
+.root-pane {
+    -fx-background-color: linear-gradient(to top, #1c1c1c 0%, #8247b5 100%);
+    -fx-background-radius: 20;
+    -fx-padding: 30;
+    -fx-border-color: #b084f6;
+    -fx-border-width: 2;
+    -fx-border-radius: 20;
+}
+
+.header-box {
+    -fx-background-color: linear-gradient(to right, #3a3a3a, #663399);
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+    -fx-border-color: #b084f6;
+    -fx-border-width: 1.5;
+    -fx-padding: 10 20;
+    -fx-alignment: center;
+    -fx-background-color: linear-gradient(to right, #5e35b1, #8e24aa);
+    -fx-background-radius: 25;
+    -fx-effect: dropshadow(gaussian, rgba(146, 86, 255, 0.4), 15, 0.4, 0, 0);
+}
+
+.header-label {
+    -fx-text-fill: white;
+    -fx-font-size: 38px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI", Calibri, sans-serif;
+}
+
+
+.label {
+    -fx-text-fill: #d1c4e9;
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI";
+}
+
+
+.text-field, .password-field {
+    -fx-background-color: #3b3b3b;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #aaaaaa;
+    -fx-border-color: #663399;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 8;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #9c27b0;
+}
+
+
+.login-button {
+    -fx-background-color: linear-gradient(to right, #8247b5, #3a3a3a);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+    -fx-border-color: #ffdd57;
+    -fx-border-width: 1.5;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 8, 0.5, 0, 2);
+}
+
+.login-button:hover {
+    -fx-background-color: linear-gradient(to right, #9d5de5, #555);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.login-button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}

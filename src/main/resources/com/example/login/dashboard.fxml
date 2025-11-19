@@ -1,65 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
 <!--<?import javafx.geometry.Insets?>-->
 
-<?import java.net.URL?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.login.controllers.DashboardController"
-            prefWidth="1000" prefHeight="600"
-            style="-fx-background-color: linear-gradient(to bottom right, #1c1b1f, #3d0066);">
+<AnchorPane prefHeight="737.0" prefWidth="1119.0" style="-fx-background-color: linear-gradient(to bottom right, #1c1b1f, #3d0066);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.login.controllers.DashboardController">
 
     <!-- ===== Encabezado superior ===== -->
-    <HBox prefHeight="60" layoutY="0" spacing="10"
-          style="-fx-background-color: linear-gradient(to right, #2b2b2b, #4b0082); -fx-padding: 10;">
-        <Label text="🏦 Banco UQ"
-               style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
-        <Pane HBox.hgrow="ALWAYS"/>
-        <Label text="Usuario:" style="-fx-text-fill: white;"/>
-        <Label fx:id="lblActiveUser" text="admin" style="-fx-text-fill: white; -fx-font-weight: bold;"/>
-        <Button text="Cerrar sesión" onAction="#OnGoLogout"
-                style="-fx-background-color: #8000ff; -fx-text-fill: white; -fx-background-radius: 8;"/>
+    <HBox layoutY="0" prefHeight="60" spacing="10" style="-fx-background-color: linear-gradient(to right, #2b2b2b, #4b0082); -fx-padding: 10;">
+        <Label style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;" text="🏦 Banco UQ" />
+        <Pane HBox.hgrow="ALWAYS" />
+        <Label style="-fx-text-fill: white;" text="Usuario:" />
+        <Label fx:id="lblActiveUser" style="-fx-text-fill: white; -fx-font-weight: bold;" text="admin" />
+        <Button onAction="#OnGoLogout" style="-fx-background-color: #8000ff; -fx-text-fill: white; -fx-background-radius: 8;" text="Cerrar sesión" />
     </HBox>
 
     <!-- ===== Barra lateral ===== -->
-    <VBox layoutX="0" layoutY="60" prefWidth="230" spacing="8"
-          style="-fx-background-color: linear-gradient(to bottom, #000000, #4b0082); -fx-padding: 15;">
+    <VBox layoutX="0" layoutY="60" prefWidth="230" spacing="8" style="-fx-background-color: linear-gradient(to bottom, #000000, #4b0082); -fx-padding: 15;">
 
-        <Label text="Menú principal"
-               style="-fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 0 0 8 0;"/>
+        <Label style="-fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 0 0 8 0;" text="Menú principal" />
 
-        <Button fx:id="btnRegisterClient" text="Registro de Clientes" onAction="#OnGoClients" styleClass="menuButton"/>
-        <Button fx:id="btnDepositsWithdrawals" text="Depósitos y Retiros" onAction="#OnGoDeposits" styleClass="menuButton"/>
-        <Button fx:id="btnCheckBalance" text="Consultar Saldo" onAction="#OnGoCheckBalance" styleClass="menuButton"/>
-        <Button fx:id="btnTransfers" text="Transferencias" onAction="#OnGoTransfer" styleClass="menuButton"/>
-        <Button fx:id="btnGenerateReport" text="Generar Reporte" onAction="#OnGoReport" styleClass="menuButton"/>
-        <Button fx:id="btnEmployeeManagement" text="Gestión de Empleados" onAction="#OnGoEmployees" styleClass="menuButton"/>
-        <Button fx:id="btnSecurityAuthentication" text="Seguridad y Autenticación" onAction="#OnGoSecurity" styleClass="menuButton"/>
-        <Button fx:id="btnTransactionMonitoring" text="Monitoreo de Transacciones" onAction="#OnGoMonitor" styleClass="menuButton"/>
-        <Button fx:id="btnAdvancedReports" text="Reportes Avanzados" onAction="#OnGoAdvancedReports" styleClass="menuButton"/>
-        <Button fx:id="btnBalance" text="Mi saldo" onAction="#OnGoBalance" styleClass="menuButton"/>
+        <Button fx:id="btnRegisterClient" onAction="#OnGoClients" styleClass="menuButton" text="Registro de Clientes" />
+        <Button fx:id="btnDepositsWithdrawals" onAction="#OnGoDeposits" styleClass="menuButton" text="Depósitos y Retiros" />
+        <Button fx:id="btnCheckBalance" onAction="#OnGoCheckBalance" styleClass="menuButton" text="Consultar Saldo" />
+        <Button fx:id="btnTransfers" onAction="#OnGoTransfer" styleClass="menuButton" text="Transferencias" />
+        <Button fx:id="btnGenerateReport" onAction="#OnGoReport" styleClass="menuButton" text="Generar Reporte" />
+        <Button fx:id="btnEmployeeManagement" onAction="#OnGoEmployees" styleClass="menuButton" text="Gestión de Empleados" />
+        <Button fx:id="btnSecurityAuthentication" onAction="#OnGoSecurity" styleClass="menuButton" text="Seguridad y Autenticación" />
+        <Button fx:id="btnTransactionMonitoring" onAction="#OnGoMonitor" styleClass="menuButton" text="Monitoreo de Transacciones" />
+        <Button fx:id="btnAdvancedReports" onAction="#OnGoAdvancedReports" styleClass="menuButton" text="Reportes Avanzados" />
+        <Button fx:id="btnBalance" onAction="#OnGoBalance" styleClass="menuButton" text="Mi saldo" />
     </VBox>
 
-    <!-- ===== Contenedor principal ===== -->
-    <StackPane fx:id="MainContainer"
-               layoutX="230" layoutY="60"
-               AnchorPane.bottomAnchor="0"
-               AnchorPane.rightAnchor="0"
-               AnchorPane.topAnchor="60"
-               AnchorPane.leftAnchor="230"
-               style="-fx-background-color: rgba(255,255,255,0.05);
-                      -fx-border-color: #8000ff;
-                      -fx-border-width: 2;
-                      -fx-background-radius: 10;
-                      -fx-border-radius: 10;">
-        <Label text="Bienvenido al Sistema Bancario Banco UQ"
-               style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+    <StackPane fx:id="MainContainer" layoutX="230" layoutY="60" style="-fx-background-color: rgba(255,255,255,0.05);                       -fx-border-color: #8000ff;                       -fx-border-width: 2;                       -fx-background-radius: 10;                       -fx-border-radius: 10;" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="230" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="60">
+        <Label style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;" text="Bienvenido al Sistema Bancario Banco UQ" />
     </StackPane>
 
-    <!-- ===== Estilos internos CSS ===== -->
     <stylesheets>
-        <URL value="@css/dashboard.css"/>
+        <URL value="@css/dashboard.css" />
     </stylesheets>
 
 </AnchorPane>

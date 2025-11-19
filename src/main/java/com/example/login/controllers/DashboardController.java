@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -39,6 +40,9 @@ public class DashboardController {
     private Button btnAdvancedReports;
     @FXML
     private Button btnBalance;
+    @FXML
+    private Label lblActiveUser;
+
 
     @FXML
     private StackPane MainContainer;
@@ -48,6 +52,11 @@ public class DashboardController {
     public void setUser(User user) {
         this.loggedUser = user;
         interfaceForRole();
+        setUserDashboard();
+    }
+
+    private void setUserDashboard (){
+        lblActiveUser.setText(loggedUser.getEmail());
     }
 
     private void interfaceForRole() {
@@ -236,7 +245,24 @@ public class DashboardController {
     }
 
     @FXML
-    private void OnGoSecurity() {}
+    private void OnGoSecurity() {
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("/com/example/login/securityAuthentication.fxml"));
+            Parent securityAuthentication = loader.load();
+
+            // Obtener el controlador de Clientes
+            SecurityAuthenticationController controller = loader.getController();
+
+            // Reemplazar el contenido del contenedor principal
+            MainContainer.getChildren().clear();
+            MainContainer.getChildren().add(securityAuthentication);
+            VBox.setVgrow(securityAuthentication, Priority.ALWAYS);
+
+        } catch (IOException e) {
+            mostrarAlerta("Error", "No se pudo cargar la lista", Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private void OnGoEmployees() {

@@ -42,66 +42,6 @@ public class LoginController {
     public void initialize() {
         userRepository = UserRepository.getInstancia();
         userRepository.cargarDatosEjemplo();
-
-        rootPane.setStyle("""
-                -fx-background-radius: 50;
-                -fx-border-width: 15;
-                -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #8247b5 0%, #636060 100%)
-                """);
-
-        btnIngresar.setStyle(
-                "-fx-background-color: linear-gradient(to right, #8247b5, #3a3a3a);" +
-                        "-fx-text-fill: white;" +
-                        "-fx-font-size: 14px;" +
-                        "-fx-font-weight: bold;" +
-                        "-fx-background-radius: 25;" +
-                        "-fx-border-radius: 25;" +
-                        "-fx-border-color: #ffd700;" +
-                        "-fx-border-width: 1.5;" +
-                        "-fx-cursor: hand;" +
-                        "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 8, 0.5, 0, 2);"
-        );
-
-        btnIngresar.setOnMouseEntered(e -> {
-            btnIngresar.setStyle(
-                    "-fx-background-color: linear-gradient(to right, #9d5de5, #555);" +
-                            "-fx-text-fill: white;" +
-                            "-fx-font-size: 14px;" +
-                            "-fx-font-weight: bold;" +
-                            "-fx-background-radius: 25;" +
-                            "-fx-border-radius: 25;" +
-                            "-fx-border-color: #ffea00;" +
-                            "-fx-border-width: 1.5;" +
-                            "-fx-cursor: hand;" +
-                            "-fx-scale-x: 1.07;" +
-                            "-fx-scale-y: 1.07;" +
-                            "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 10, 0.5, 0, 3);"
-            );
-        });
-
-        btnIngresar.setOnMouseExited(e -> {
-            btnIngresar.setStyle(
-                    "-fx-background-color: linear-gradient(to right, #8247b5, #3a3a3a);" +
-                            "-fx-text-fill: white;" +
-                            "-fx-font-size: 14px;" +
-                            "-fx-font-weight: bold;" +
-                            "-fx-background-radius: 25;" +
-                            "-fx-border-radius: 25;" +
-                            "-fx-border-color: #ffd700;" +
-                            "-fx-border-width: 1.5;" +
-                            "-fx-cursor: hand;" +
-                            "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 8, 0.5, 0, 2);" +
-                            "-fx-scale-x: 1.0;" +
-                            "-fx-scale-y: 1.0;"
-            );
-        });
-
-        btnIngresar.setOnMousePressed(e -> btnIngresar.setScaleX(0.95));
-        btnIngresar.setOnMousePressed(e -> btnIngresar.setScaleY(0.95));
-        btnIngresar.setOnMouseReleased(e -> {
-            btnIngresar.setScaleX(1.0);
-            btnIngresar.setScaleY(1.0);
-        });
     }
 
     /**
@@ -113,47 +53,45 @@ public class LoginController {
             return;
         }
 
+        String email = txtCorreo.getText().trim();
+        String password = txtContraseña.getText().trim();
+
+        // Buscar el usuario en el repositorio
+        User user = userRepository.login(email, password);
+
+        if (user == null) {
+            mostrarAlerta("Error", "Usuario o contraseña incorrectos", Alert.AlertType.ERROR);
+            return;
+        }
+
+        // Validar si está bloqueado
+        if (user.isBlocked()) {
+            mostrarAlerta("Acceso Denegado", "Su cuenta ha sido bloqueada. Contacta al administrador.", Alert.AlertType.ERROR);
+            return;
+        }
+
+        // Guardar el usuario logueado globalmente
+        App.loggedUser = user;
+
         try {
-            String Email = txtCorreo.getText().trim();
-            String Password = txtContraseña.getText().trim();
+            // Cargar el Dashboard
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/login/dashboard.fxml"));
+            Parent root = loader.load();
 
-            User user = userRepository.login(Email, Password);
+            DashboardController controller = loader.getController();
+            controller.setUser(user);
 
-            if (user != null) {
-                App.loggedUser = user;
-            }
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Dashboard");
+            stage.show();
 
+            // Cerrar ventana de login
+            ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
 
-            // Verificar si el correo esta registrado
-            if (UserRepository.searchUser(Email, Password) ) {
-                try {
-                    // Cargar el nuevo FXML
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/login/dashboard.fxml"));
-                    Parent root = loader.load();
-
-                    DashboardController controller = loader.getController();
-                    controller.setUser(user);
-
-                    // Crear nueva escena
-                    Stage stage = new Stage();
-                    stage.setScene(new Scene(root));
-                    stage.setTitle("Dashboard");
-                    stage.show();
-
-                    // Cerrar la ventana de login
-                    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    currentStage.close();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            else{
-                mostrarAlerta("Error", "Usuario no existente", Alert.AlertType.ERROR);
-            }
-
-        } catch (NumberFormatException e) {
-            mostrarAlerta("Error", "Usuario o Contraseña incorrectos", Alert.AlertType.ERROR);
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta("Error", "No se pudo cargar el Dashboard.", Alert.AlertType.ERROR);
         }
     }
 

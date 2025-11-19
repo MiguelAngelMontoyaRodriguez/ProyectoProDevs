@@ -5,6 +5,7 @@ public abstract class User {
     private String email;
     private String password;
     private int role;
+    private boolean blocked = false;
 
     public User(){
     }
@@ -37,6 +38,14 @@ public abstract class User {
 
     public void setRole(int role) {
         this.role = role;
+    }
+
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
     }
 
 
