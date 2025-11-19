@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -17,7 +18,7 @@
                   <Blend />
                </effect>
             </TextField>
-            <TextField fx:id="txtContraseña" layoutX="220.0" layoutY="267.0" promptText="12345" />
+            <PasswordField fx:id="txtContraseña" layoutX="220.0" layoutY="267.0" promptText="12345" />
             <Label layoutX="80.0" layoutY="210.0" text="Correo" textFill="#f4ff7e">
                <font>
                   <Font name="Calibri" size="19.0" />

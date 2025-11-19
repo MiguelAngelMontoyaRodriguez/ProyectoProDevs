@@ -1,7 +1,9 @@
 package com.example.login.controllers;
 
 import com.example.login.models.Client;
+import com.example.login.models.Movements;
 import com.example.login.models.User;
+import com.example.login.repositories.MovementsRepository;
 import com.example.login.repositories.UserRepository;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -21,11 +23,13 @@ public class TransferController {
     @FXML
     private Label lblStatus;
 
+    private MovementsRepository movementsRepository;
     private UserRepository userRepository;
 
 
     @FXML
     public void initialize() {
+        movementsRepository= MovementsRepository.getInstancia();
         userRepository = UserRepository.getInstancia();
         cargarClientes();
     }
@@ -63,6 +67,16 @@ public class TransferController {
 
         origen.setBalance(origen.getBalance() - amount);
         destiny.setBalance(destiny.getBalance() + amount);
+
+        String userType = "Cliente";
+        // Movimiento para el emisor
+        Movements sent = new Movements(origen.getId(), "Transferencia enviada", amount, userType);
+        movementsRepository.add(sent);
+
+        // Movimiento para el receptor
+        Movements received = new Movements(destiny.getId(), "Transferencia recibida", amount, userType);
+        movementsRepository.add(received);
+
         lblStatus.setText("✅ Transferencia exitosa.");
     }
 }

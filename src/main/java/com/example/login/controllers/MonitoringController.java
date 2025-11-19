@@ -12,16 +12,17 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+
 import java.util.ArrayList;
 
-public class DepositsController {
 
+public class MonitoringController {
     @FXML
     private ComboBox<Client> cbClients;
     @FXML
     private ComboBox<String> cbOperation;
     @FXML
-    private Label lblStatus;
+    private javafx.scene.control.Label lblStatus;
     @FXML
     private TextField txtAmount;
     @FXML
@@ -34,6 +35,9 @@ public class DepositsController {
     private TableColumn<Movements, Number> colAmount;
     @FXML
     private TableColumn<Movements, String> colId;
+    @FXML
+    private TableColumn<Movements, String> colUserType;
+
 
     private MovementsRepository movementsRepository;
     private UserRepository userRepository;
@@ -62,12 +66,53 @@ public class DepositsController {
         colType.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getType()));
         colId.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getClientId()));
         colAmount.setCellValueFactory(c -> new SimpleDoubleProperty(c.getValue().getAmount()));
+        colUserType.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getUserType()));
 
-        cargarClientes();
-        cargarTipos();
         cargarMovimientos();
+        applyRowStyle();
+    }
+    private void applyRowStyle(){
+        var movements = tblMovements.getItems();
+        tblMovements.setRowFactory(tv -> new TableRow<>() {
+            @Override
+            protected void updateItem(Movements mov, boolean empty) {
+                super.updateItem(mov, empty);
+
+                if (mov == null || empty) {
+                    setStyle("");
+                    setTooltip(null);
+                    return;
+                }
+                    int index = getIndex();
+                    Movements previous = index > 0 ? movements.get(index - 1) : null;
+                    String alert = evaluateFraud(mov, previous);
+
+                 switch (alert) {
+                    case "Suspicious" -> {
+                        setStyle("-fx-background-color: #ffe6e6;");
+                        setTooltip(new Tooltip("Transacción de monto elevado"));
+                    }
+                    case "Review" -> {
+                        setStyle("-fx-background-color: #fff5cc;");
+                        setTooltip(new Tooltip("Transacción consecutiva del mismo cliente"));
+                    }
+                    default -> {
+                        setStyle("-fx-background-color: #e6ffe6;");
+                        setTooltip(null);
+                    }
+                }
+
+            }
+        });
 
     }
+    private String evaluateFraud(Movements mov, Movements previous) {
+        if (mov.getAmount() > 10000) return "Suspicious";
+        if (mov.getType().contains("Transferencia") && mov.getAmount() > 5000) return "Suspicious";
+        if (previous != null && mov.getClientId().equals(previous.getClientId()))return "Review";
+        return "Normal";
+    }
+
 
     private void cargarMovimientos() {
         ArrayList<Movements> todo = movementsRepository.getAll();
@@ -87,72 +132,8 @@ public class DepositsController {
         }
     }
 
-    private void cargarTipos() {
-        cbOperation.setItems(FXCollections.observableArrayList("Depósito", "Retiro"));
-    }
-    public void cargarClientes(){
-        ArrayList<User> user = userRepository.getByRole(3);
-        ArrayList<Client> clients = new ArrayList<>();
-
-        for (User users : user) {
-            clients.add((Client) users);
-        }
-
-        cbClients.setItems(FXCollections.observableArrayList(clients));
-
-    }
 
 
-    @FXML
-    private void OnConfirmOperation() {
-        Client client;
-        if (App.loggedUser.getRole() == 3) {
-            // Si es cliente, se usa su propia cuenta
-            client = (Client) App.loggedUser;
-        } else {
-            // Si es cajero, debe seleccionar un cliente
-            client = cbClients.getValue();
 
-            if (client == null) {
-                lblStatus.setText("⚠️ Seleccione un cliente.");
-                return;
-            }
-        }
-        String operation = cbOperation.getValue();
-        double amount = Double.parseDouble(txtAmount.getText());
-
-        String userType= switch (App.loggedUser.getRole()) {
-            case 1 -> "Administrador";
-            case 2 -> "Cajero";
-            case 3 -> "Cliente";
-            default -> "Desconocido";
-        };
-
-        if (operation.equals("Depósito")) {
-            client.setBalance(client.getBalance() + amount);
-            lblStatus.setText("✅ Depósito exitoso.");
-            Movements move = new Movements(client.getId(), "Depósito", amount, userType);
-            movementsRepository.add(move);
-
-        } else if (operation.equals("Retiro")) {
-            if (client.getBalance() >= amount) {
-                client.setBalance(client.getBalance() - amount);
-                lblStatus.setText("✅ Retiro realizado.");
-                Movements mov = new Movements(client.getId(), "Retiro", amount, userType);
-                movementsRepository.add(mov);
-
-            } else {
-                lblStatus.setText("❌ Saldo insuficiente.");
-            }
-        }
-
-        // Actualizar lista y tabla
-        tblMovements.setItems(FXCollections.observableArrayList(movementsRepository.getAll()));
-        tblMovements.refresh();
-
-        // Actualizar el repositorio para mantener sincronizado
-        userRepository.updateClient(client);
-
-
-    }
 }
+

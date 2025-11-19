@@ -8,14 +8,17 @@ public class Movements {
     private String type;
     private double amount;
     private LocalDateTime date;
+    private String userType;
+
 
     public Movements(){}
 
-    public Movements(String clientId, String type, double amount) {
+    public Movements(String clientId, String type, double amount, String userType) {
         this.clientId = clientId;
         this.type = type;
         this.amount = amount;
         this.date = LocalDateTime.now();
+        this.userType = userType;
     }
 
     public String getClientId() {
@@ -54,9 +57,12 @@ public class Movements {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         return date.format(fmt);
     }
+    public String getUserType() {
+        return userType;
+    }
 
     @Override
     public String toString() {
-        return "[" + getFormattedDate() + "] " + clientId + " " + type + " de $" + amount + ")";
+        return "[" + getFormattedDate() + "] " + clientId + " " + type + " de $" + amount + "por" + userType+ ")";
     }
 }

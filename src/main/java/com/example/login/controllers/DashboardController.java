@@ -216,7 +216,24 @@ public class DashboardController {
     }
 
     @FXML
-    private void OnGoReport() {}
+    private void OnGoReport() {
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("/com/example/login/Report.fxml"));
+            Parent report = loader.load();
+
+            // Obtener el controlador de Clientes
+            ReportController controller = loader.getController();
+
+            // Reemplazar el contenido del contenedor principal
+            MainContainer.getChildren().clear();
+            MainContainer.getChildren().add(report);
+            VBox.setVgrow(report, Priority.ALWAYS);
+
+        }catch (IOException e) {
+            mostrarAlerta("Error", "No se pudo cargar el generador de reportes", Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private void OnGoSecurity() {}
@@ -242,10 +259,44 @@ public class DashboardController {
     }
 
     @FXML
-    private void OnGoMonitor() {}
+    private void OnGoMonitor() {
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("/com/example/login/Monitoring.fxml"));
+            Parent monitor = loader.load();
+
+            // Obtener el controlador de Clientes
+            MonitoringController controller = loader.getController();
+
+            // Reemplazar el contenido del contenedor principal
+            MainContainer.getChildren().clear();
+            MainContainer.getChildren().add(monitor);
+            VBox.setVgrow(monitor, Priority.ALWAYS);
+
+        }catch (IOException e) {
+            mostrarAlerta("Error", "No se pudo cargar el historial de transferencias", Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
+    }
 
     @FXML
-    private void OnGoAdvancedReports() {}
+    private void OnGoAdvancedReports() {
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("/com/example/login/AdvancedRep.fxml"));
+            Parent advancedRep = loader.load();
+
+            // Obtener el controlador de Clientes
+            AdvancedRepController controller = loader.getController();
+
+            // Reemplazar el contenido del contenedor principal
+            MainContainer.getChildren().clear();
+            MainContainer.getChildren().add(advancedRep);
+            VBox.setVgrow(advancedRep, Priority.ALWAYS);
+
+        }catch (IOException e) {
+            mostrarAlerta("Error", "No se pudo cargar el generador de reportes avanzados", Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private void OnGoBalance() {

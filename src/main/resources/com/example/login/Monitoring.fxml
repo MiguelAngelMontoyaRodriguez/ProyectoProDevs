@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane prefHeight="600" prefWidth="800" styleClass="monitoring-root" stylesheets="@css/monitor.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.login.controllers.MonitoringController">
+
+    <VBox alignment="TOP_CENTER" spacing="20.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="40.0">
+
+        <!-- Título -->
+        <Label styleClass="title-label" text="Monitoreo de transacciones" />
+
+        <Label styleClass="form-label" text="Historial de movimientos" />
+
+        <TableView fx:id="tblMovements" prefHeight="200" prefWidth="634.0">
+
+            <columns>
+                <TableColumn fx:id="colDate" prefWidth="130.0" text="Fecha" />
+                <TableColumn fx:id="colId" prefWidth="100" text="ID cliente" />
+            <TableColumn fx:id="colUserType" prefWidth="130.0" text="Tipo cuenta ejecutora" />
+                <TableColumn fx:id="colType" prefWidth="160.0" text="Tipo transaccion" />
+                <TableColumn fx:id="colAmount" prefWidth="150.0" text="Monto" />
+
+            </columns>
+        </TableView>
+      <HBox prefHeight="25.0" prefWidth="680.0">
+         <children>
+            <Label styleClass="sub-label" text="Banderas de posibilidad de fraude">
+               <padding>
+                  <Insets top="10.0" />
+               </padding></Label>
+         </children>
+      </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="15">
+            <Circle fill="red" radius="6" stroke="black" />
+            <Label styleClass="legend-label" text="Sospechosa" />
+
+            <Circle fill="green" radius="6" stroke="black" />
+            <Label styleClass="legend-label" text="Normal" />
+
+            <Circle fill="gold" radius="6" stroke="black" />
+            <Label styleClass="legend-label" text="Revisar" />
+        </HBox>
+
+    </VBox>
+</AnchorPane>

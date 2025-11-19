@@ -40,8 +40,10 @@ public class UserRepository {
      */
     public void cargarDatosEjemplo() {
         user.add(new Admin("RickPichon@gmail.com", "panConQueso","Rick", "1242342342", "dsf34t3g435"));
+        user.add(new Admin("xd", "1", "Mike", "302", "101"));
         user.add(new Cashier("caro@gmail.com", "0606", "carol","0128", "Diurno"));
         user.add(new Client("pablito@gmail.com", "12345","luis", "alexander", "123123", "321","corriente", 5000));
+        user.add(new Client("ejemploxd@gmail.com", "1010", "Elba", "Nanon", "1910", "305", "corriente", 50000));
     }
 
     /*

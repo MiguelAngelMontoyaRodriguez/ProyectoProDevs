@@ -1,0 +1,28 @@
+.monitoring-root {
+    -fx-background-color: linear-gradient(to bottom right, #1a1a1a, #3b0066);
+}
+
+.title-label {
+    -fx-font-size: 24px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.form-label {
+    -fx-font-size: 16px;
+    -fx-text-fill: F700FF;
+}
+.sub-label{
+    -fx-font-size: 14px;
+    -fx-text-fill: DA80FF;
+}
+.status-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #00ff99;
+}
+.legend-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, black, 1, 0.5, 0, 1);
+}
